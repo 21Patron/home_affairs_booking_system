@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Affairs Booking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>Welcome to Home Affairs Booking System</h1>
+            <p>Book appointments for all Home Affairs services effortlessly. Whether you need assistance with ID documents, passports, or other vital records, we're here to help.</p>
+            <a href="{{ url_for('view_services') }}" class="button">View Services</a>
+        </div>
+    </main>
+    <div class="footer">
+        <p>© 2024 Home Affairs Booking System. All rights reserved.</p>
+    </div>
+</body>
+</html>
