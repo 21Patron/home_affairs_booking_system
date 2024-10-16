@@ -7,8 +7,56 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome, Admin!</h1>
-    <p>Administer services, users, and bookings here.</p>
-    <a href="{{ url_for('logout') }}" class="button">Logout</a>
+    <div class="container">
+        <h1>Welcome, Admin!</h1>
+        <h2>Registered Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_user', uid=user.uid) }}">Edit</a> |
+                        <a href="{{ url_for('delete_user', uid=user.uid) }}" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Bookings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.user_email }}</td>
+                    <td>{{ booking.service_name }}</td>
+                    <td>{{ booking.date }}</td>
+                    <td><a href="{{ url_for('delete_booking', booking_id=booking.id) }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('logout') }}" class="button">Logout</a>
+    </div>
 </body>
+<div class="footer">
+    <p>© 2024 Home Affairs Booking System. All rights reserved.</p>
+</div>
 </html>

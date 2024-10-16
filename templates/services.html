@@ -7,22 +7,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <main>
-        <div class="container">
-            <h1>Our Services</h1>
-            <p>Select from the following services to book an appointment:</p>
-            <ul>
-                {% for service in services %}
-                <li>
-                    <h3>{{ service.name }}</h3>
-                    <p>{{ service.description }}</p>
-                    <a href="{{ url_for('book_service', service_id=service.id) }}" class="button">Book Now</a>
-                </li>
-                {% endfor %}
-            </ul>
-            <a href="{{ url_for('index') }}" class="button">Back to Home</a>
-        </div>
-    </main>
+    <div class="container">
+        <h1>Our Services</h1>
+        <p>Select from the following services to book an appointment:</p>
+        <ul>
+            {% for service in services %}
+            <li>
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description }}</p>
+                <a href="{{ url_for('book_service', service_id=service.id) }}" class="button">Book Now</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}" class="button">Back to Home</a>
+    </div>
     <div class="footer">
         <p>© 2024 Home Affairs Booking System. All rights reserved.</p>
     </div>

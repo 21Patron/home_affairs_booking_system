@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>Your Bookings</h1>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
+            {% if bookings %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Slot</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.service_name }}</td>
+                            <td>{{ booking.slot }}</td>
+                            <td>{{ booking.status }}</td>
+                            <td>
+                                {% if booking.status != 'cancelled' %}
+                                    <form method="POST" action="{{ url_for('cancel_booking', booking_id=booking.id) }}">
+                                        <button type="submit" class="cancel-btn">Cancel</button>
+                                    </form>
+                                {% else %}
+                                    <span class="cancelled-text">Cancelled</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No bookings found. <a href="{{ url_for('view_services') }}">Book a service</a> now!</p>
+            {% endif %}
+
+            <a href="{{ url_for('index') }}" class="button">Back to Dashboard</a>
+        </div>
+    </main>
+    <footer>
+        <p>© 2024 Home Affairs Booking System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
