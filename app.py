@@ -72,8 +72,8 @@ def login():
                 # Redirect to appropriate dashboard or services page
                 if role == 'admin':
                     return redirect(url_for('admin_dashboard'))
-                elif role == 'staff':
-                    return redirect(url_for('staff_dashboard'))
+                #elif role == 'staff':
+                #    return redirect(url_for('staff_dashboard'))
                 else:
                     return redirect(url_for('user_dashboard'))  # User role redirects to services page
             else:
@@ -176,14 +176,14 @@ def cancel_booking(booking_id):
     flash('Booking cancelled successfully.', 'success')
     return redirect(url_for('view_bookings'))
 
-@app.route('/dashboard/staff')
-def staff_dashboard():
-    if session.get('role') != 'staff':
-        flash('Unauthorized access!', 'danger')
-        return redirect(url_for('login'))
-    
+#@app.route('/dashboard/staff')
+#def staff_dashboard():
+    #if session.get('role') != 'staff':
+    #    flash('Unauthorized access!', 'danger')
+    #    return redirect(url_for('login'))
+
     # Example of what might be displayed on staff dashboard
-    return render_template('staff_dashboard.html')
+    #return render_template('staff_dashboard.html')
 
 @app.route('/dashboard/admin')
 def admin_dashboard():
